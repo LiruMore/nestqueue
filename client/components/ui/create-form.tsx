@@ -4,7 +4,9 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import {
   Building,
   Check,
+  ChevronRight,
   ChevronsUp,
+  ChevronUp,
   LetterTextIcon,
   Tag,
   Text,
@@ -106,8 +108,71 @@ export default function CreateTicketForm({ onDismiss }: CreateTicketFormProps) {
   return (
     <div className="bg-gray-50 p-3 text-sm">
       <h2 className="text-lg font-bold mb-2">Create Ticket</h2>
-      <form onSubmit={() => {}}>
-        {/* Your form code here */}
+      <form onSubmit={handleFormSubmit}>
+        <FormTextInput
+          className="mb2"
+          icon={<LetterTextIcon width={16} />}
+          label="Title"
+          value="TicketTitle"
+          onChange={handleFormChanged}
+          placeholder="enter a title"
+          required
+        />
+
+        <div className="grid grid-cols-2 gap-2 mb-2">
+          <FormSelectInput
+            className="mb2 "
+            icon={<Check width={16} />}
+            label="Status"
+            value={ticketStatus}
+            options={statuses}
+            onChange={handleFormChanged}
+          />
+          <FormSelectInput
+            className="mb2"
+            icon={<ChevronUp width={16} />}
+            label="Priority"
+            value={ticketPriority}
+            options={priorities}
+            onChange={handleFormChanged}
+          />
+        </div>
+        <FormTextInput
+          className="mb-2"
+          icon={<Text width={16} height={16} />}
+          label="Description"
+          value="ticketDiscription"
+          rows={3}
+          onChange={handleFormChanged}
+          placeholder="Give Discription"
+          required
+        />
+
+        <div className="grid grid-cols-2 gap-2 mb-2">
+          <FormTextInput
+            icon={<User width={16} />}
+            label="Assighed to"
+            value={ticketAssignedTo}
+            onChange={handleFormChanged}
+            placeholder="Unassighned"
+          />
+          <FormSelectInput
+            icon={<Building width={16} />}
+            label="site"
+            value={ticketSite}
+            options={sites}
+            onChange={handleFormChanged}
+          />
+
+          <FormSelectInput
+            icon={<Tag width={16} />}
+            label="catagory"
+            value={ticketCategory}
+            options={categories}
+            onChange={handleFormChanged}
+          />
+        </div>
+
         <div className="mt-6 flex justify-end gap-3">
           <Button
             role="button"
